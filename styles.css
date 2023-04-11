@@ -23,7 +23,7 @@ body {
   font-size: 20px;
 }
 
-.tarjetas {
+.tarjetas, .tarjetas-ataque {
   display: flex;
   gap: 10px;
 }
@@ -66,17 +66,9 @@ input {
   align-items: center;
 }
 
-.tarjetas-ataque {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-
-}
-
 .boton-de-ataque {
   background-color: #11468F;
   padding: 10px;
-  margin: 5px;
   box-sizing: border-box;
   border-radius: 20px;
   border-color: transparent;
@@ -109,10 +101,7 @@ input {
 }
 
 @media (max-width: 360px) {
-    .tarjetas{
-        flex-direction: column;
-    }
-    .botones-ataque{
+    .tarjetas, .tarjetas-ataque{
         flex-direction: column;
     }
 }
