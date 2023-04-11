@@ -66,9 +66,17 @@ input {
   align-items: center;
 }
 
+.tarjetas-ataque {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+}
+
 .boton-de-ataque {
   background-color: #11468F;
   padding: 10px;
+  margin: 5px;
   box-sizing: border-box;
   border-radius: 20px;
   border-color: transparent;
@@ -92,4 +100,19 @@ input {
   border: none;
   color: #11468F;
   font-family: 'Poppins', sans-serif;
+}
+
+.ataques{
+    display: grid;
+    grid-template-columns: 100px 100px;
+    text-align: center;
+}
+
+@media (max-width: 360px) {
+    .tarjetas{
+        flex-direction: column;
+    }
+    .botones-ataque{
+        flex-direction: column;
+    }
 }
