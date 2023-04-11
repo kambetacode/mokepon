@@ -41,6 +41,14 @@ body {
   color: white;
 }
 
+input:checked + label {
+    background-color: aqua;
+}
+
+input:hover + label {
+    background-color: aqua;
+}
+
 .tarjeta-de-mokepon img {
   width: 80px;
 }
@@ -98,6 +106,12 @@ input {
     display: grid;
     grid-template-columns: 100px 100px;
     text-align: center;
+    color: white;
+}
+
+#vidas-jugador, #vidas-enemigo {
+    font-size: 30px;
+    margin: 10px;
 }
 
 @media (max-width: 360px) {
