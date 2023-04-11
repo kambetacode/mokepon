@@ -45,7 +45,7 @@ input:checked + label {
     background-color: aqua;
 }
 
-input:hover + label {
+input:hover + label      {
     background-color: aqua;
 }
 
