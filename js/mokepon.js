@@ -1,9 +1,7 @@
 const sectionSeleccionarAtaque = document.getElementById('seleccionar-ataque')
 const sectionReiniciar = document.getElementById('reiniciar')
 const botonMascotaJugador = document.getElementById('boton-mascota')
-const botonFuego = document.getElementById('boton-fuego')
-const botonAgua = document.getElementById('boton-agua')
-const botonTierra = document.getElementById('boton-tierra')
+
 const botonReiniciar = document.getElementById('boton-reiniciar')
 
 const sectionSeleccionarMascota = document.getElementById('seleccionar-mascota')
@@ -16,13 +14,20 @@ const spanVidasEnemigo = document.getElementById('vidas-enemigo')
 const sectionMensajes = document.getElementById('resultado')
 const ataquesDelJugador = document.getElementById('ataques-del-jugador')
 const ataquesDelEnemigo = document.getElementById('ataques-del-enemigo')
+
 const contenedorTarjetas = document.getElementById('contenedor-de-tarjetas')
+const contenedorAtaques = document.getElementById('contenedor-ataques')
 
 let mokepones = []
 let opcionDeMokepones
+let opcionDeAtaques
 let inputHipodoge
 let inputCapipepo
 let inputRatigueya
+let botonFuego
+let botonAgua
+let botonTierra
+let mascotaJugador
 let ataqueJugador
 let ataqueEnemigo
 let vidasJugador = 3
@@ -86,20 +91,16 @@ function iniciarJuego() {
                     <img src=${mokepon.foto} alt=${mokepon.nombre}>
                 </label>
                 `
+
         contenedorTarjetas.innerHTML += opcionDeMokepones
         inputHipodoge = document.getElementById('Hipodoge')
         inputCapipepo = document.getElementById('Capipepo')
         inputRatigueya = document.getElementById('Ratigueya')
-
     })
     
     botonMascotaJugador.addEventListener('click', seleccionarMascotaJugador)
 
-    botonFuego.addEventListener('click', ataqueFuego)
-    
-    botonAgua.addEventListener('click', ataqueAgua)
-    
-    botonTierra.addEventListener('click', ataqueTierra)
+
     
     botonReiniciar.addEventListener('click', reiniciarJuego)
 }
@@ -111,16 +112,54 @@ function seleccionarMascotaJugador() {
     
     if (inputHipodoge.checked) {
         spanMascotaJugador.innerHTML = inputHipodoge.id
+        mascotaJugador = inputHipodoge.id
     } else if (inputCapipepo.checked) {
         spanMascotaJugador.innerHTML = inputCapipepo.id
+        mascotaJugador = inputCapipepo.id
     } else if (inputRatigueya.checked) {
         spanMascotaJugador.innerHTML = inputRatigueya.id
+        mascotaJugador = inputRatigueya.id
     } else {
         alert('Selecciona una mascota')
     }
 
+    extraerAtaques(mascotaJugador)
     seleccionarMascotaEnemigo()
 }
+
+function extraerAtaques(mascotaJugador) {
+    let ataques
+    for (let i = 0; i < mokepones.length; i++) {
+        if (mascotaJugador === mokepones[i].nombre) {
+            ataques = mokepones[i].ataques
+        }
+    }
+
+    mostrarAtaques(ataques)
+
+    
+}
+
+function mostrarAtaques(ataques) {
+    ataques.forEach((ataques) => {
+        opcionDeAtaques = `
+        <button id="${ataques.id}" class="boton-de-ataque">${ataques.nombre}</button>
+        `
+
+        contenedorAtaques.innerHTML += opcionDeAtaques
+        botonFuego = document.getElementById('boton-fuego')
+        botonAgua = document.getElementById('boton-agua')
+        botonTierra = document.getElementById('boton-tierra')
+    })
+
+    botonFuego.addEventListener('click', ataqueFuego)
+    
+    botonAgua.addEventListener('click', ataqueAgua)
+    
+    botonTierra.addEventListener('click', ataqueTierra)
+}
+
+
 
 //esta es otra manera mas facil de poner el numero aleatorio entre los mokepones
 
@@ -131,7 +170,7 @@ function seleccionarMascotaEnemigo() {
 }
 
 function ataqueFuego() {
-    ataqueJugador = 'FUEGO'
+    ataqueJugador = 'FUEGO' 
     ataqueAleatorioEnemigo()
 }
 function ataqueAgua() {
