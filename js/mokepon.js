@@ -7,9 +7,6 @@ const botonTierra = document.getElementById('boton-tierra')
 const botonReiniciar = document.getElementById('boton-reiniciar')
 
 const sectionSeleccionarMascota = document.getElementById('seleccionar-mascota')
-const inputHipodoge = document.getElementById('hipodoge')
-const inputCapipepo = document.getElementById('capipepo')
-const inputRatigueya = document.getElementById('ratigueya')
 const spanMascotaJugador = document.getElementById('mascota-jugador')
 const spanMascotaEnemigo = document.getElementById('mascota-enemigo')
 
@@ -19,8 +16,13 @@ const spanVidasEnemigo = document.getElementById('vidas-enemigo')
 const sectionMensajes = document.getElementById('resultado')
 const ataquesDelJugador = document.getElementById('ataques-del-jugador')
 const ataquesDelEnemigo = document.getElementById('ataques-del-enemigo')
+const contenedorTarjetas = document.getElementById('contenedor-de-tarjetas')
 
 let mokepones = []
+let opcionDeMokepones
+let inputHipodoge
+let inputCapipepo
+let inputRatigueya
 let ataqueJugador
 let ataqueEnemigo
 let vidasJugador = 3
@@ -68,11 +70,28 @@ ratigueya.ataques.push(
     { nombre: '💦', id: 'boton-agua'}
 )
 
+mokepones.push(hipodoge,capipepo,ratigueya)
+
 
 function iniciarJuego() {
     
     sectionSeleccionarAtaque.style.display = 'none'
     sectionReiniciar.style.display = 'none'
+
+    mokepones.forEach((mokepon) => {
+        opcionDeMokepones = `
+        <input type="radio" name="mascota" id=${mokepon.nombre} />
+                <label class="tarjeta-de-mokepon" for=${mokepon.nombre}>
+                    <p>${mokepon.nombre}</p>
+                    <img src=${mokepon.foto} alt=${mokepon.nombre}>
+                </label>
+                `
+        contenedorTarjetas.innerHTML += opcionDeMokepones
+        inputHipodoge = document.getElementById('Hipodoge')
+        inputCapipepo = document.getElementById('Capipepo')
+        inputRatigueya = document.getElementById('Ratigueya')
+
+    })
     
     botonMascotaJugador.addEventListener('click', seleccionarMascotaJugador)
 
