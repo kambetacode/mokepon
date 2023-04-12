@@ -127,7 +127,7 @@ function seleccionarMascotaJugador() {
 function seleccionarMascotaEnemigo() {
     let mascotaAleatoria = aleatorio(0,mokepones.length -1)
 
-    spanMascotaEnemigo = mokepones[mascotaAleatoria]
+    spanMascotaEnemigo.innerHTML = mokepones[mascotaAleatoria].nombre
 }
 
 function ataqueFuego() {
