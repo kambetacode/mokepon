@@ -27,8 +27,9 @@ let inputRatigueya
 let botonFuego
 let botonAgua
 let botonTierra
+let botones = []
 let mascotaJugador
-let ataqueJugador
+let ataqueJugador = []
 let ataqueEnemigo
 let vidasJugador = 3
 let vidasEnemigo = 3
@@ -52,27 +53,27 @@ let ratigueya = new Mokepon('Ratigueya', './assets/mokepons_mokepon_ratigueya_at
 //Asi se crean arreglos (arrays)
 
 hipodoge.ataques.push(
-    { nombre: '💦', id: 'boton-agua'},
-    { nombre: '💦', id: 'boton-agua'},
-    { nombre: '💦', id: 'boton-agua'},
-    { nombre: '🔥', id: 'boton-fuego'},
-    { nombre: '🌱', id: 'boton-tierra'}
+    { nombre: '💦 CHORRITO', id: 'boton-agua'},
+    { nombre: '💦 LLUVIA DORADA', id: 'boton-agua'},
+    { nombre: '💦 HIDROKABUM', id: 'boton-agua'},
+    { nombre: '🔥 LANZALLAMAS 3000', id: 'boton-fuego'},
+    { nombre: '🌱 CULOTEMBLOR', id: 'boton-tierra'}
 )
 
 capipepo.ataques.push(
-    { nombre: '🌱', id: 'boton-tierra'},
-    { nombre: '🌱', id: 'boton-tierra'},
-    { nombre: '🌱', id: 'boton-tierra'},
-    { nombre: '🔥', id: 'boton-fuego'},
-    { nombre: '💦', id: 'boton-agua'}
+    { nombre: '🌱 CULOTEMBLOR', id: 'boton-tierra'},
+    { nombre: '🌱 PUTAZO LODO', id: 'boton-tierra'},
+    { nombre: '🌱 PERREMOTO', id: 'boton-tierra'},
+    { nombre: '🔥RUEDITA DE FUEGO', id: 'boton-fuego'},
+    { nombre: '💦 CHORRITO', id: 'boton-agua'}
 )
 
 ratigueya.ataques.push(
-    { nombre: '🔥', id: 'boton-fuego'},
-    { nombre: '🔥', id: 'boton-fuego'},
-    { nombre: '🔥', id: 'boton-fuego'},
-    { nombre: '🌱', id: 'boton-tierra'},
-    { nombre: '💦', id: 'boton-agua'}
+    { nombre: '🔥 LANZALLAMAS 3000', id: 'boton-fuego'},
+    { nombre: '🔥 COLMILLITO IGNEO', id: 'boton-fuego'},
+    { nombre: '🔥 RUEDITA DE FUEGO', id: 'boton-fuego'},
+    { nombre: '🌱 PERREMOTO', id: 'boton-tierra'},
+    { nombre: '💦 HIDROKABUM', id: 'boton-agua'}
 )
 
 mokepones.push(hipodoge,capipepo,ratigueya)
@@ -143,20 +144,39 @@ function extraerAtaques(mascotaJugador) {
 function mostrarAtaques(ataques) {
     ataques.forEach((ataques) => {
         opcionDeAtaques = `
-        <button id="${ataques.id}" class="boton-de-ataque">${ataques.nombre}</button>
+        <button id="${ataques.id}" class="boton-de-ataque BAtaque">${ataques.nombre}</button>
         `
 
         contenedorAtaques.innerHTML += opcionDeAtaques
-        botonFuego = document.getElementById('boton-fuego')
-        botonAgua = document.getElementById('boton-agua')
-        botonTierra = document.getElementById('boton-tierra')
+
     })
 
-    botonFuego.addEventListener('click', ataqueFuego)
-    
-    botonAgua.addEventListener('click', ataqueAgua)
-    
-    botonTierra.addEventListener('click', ataqueTierra)
+    botonFuego = document.getElementById('boton-fuego')
+    botonAgua = document.getElementById('boton-agua')
+    botonTierra = document.getElementById('boton-tierra')
+    botones = document.querySelectorAll('.BAtaque')
+
+}
+
+function secuenciaAtaques() {
+    botones.forEach((boton) => {
+        boton.addEventListener('click', (e) => {
+
+            if (e.target.textContent === '🔥 LANZALLAMAS 3000' || e.target.textContent === '🔥RUEDITA DE FUEGO' || e.target.textContent === '🔥 COLMILLITO IGNEO') {
+                ataqueJugador.push('FUEGO')
+                console.log(ataqueJugador)
+                boton.style.background = '#112f58'
+            } else if (e.target.textContent === '💦 CHORRITO' || e.target.textContent === '💦 LLUVIA DORADA' || e.target.textContent === '💦 HIDROKABUM' ) {
+                ataqueJugador.push('AGUA')
+                console.log(ataqueJugador)
+                boton.style.background = '#112f58'
+            } else {
+                ataqueJugador.push('TIERRA')
+                console.log(ataqueJugador)
+                boton.style.background = '#112f58'
+            }
+        })
+    })
 }
 
 
@@ -167,6 +187,7 @@ function seleccionarMascotaEnemigo() {
     let mascotaAleatoria = aleatorio(0,mokepones.length -1)
 
     spanMascotaEnemigo.innerHTML = mokepones[mascotaAleatoria].nombre
+    secuenciaAtaques()
 }
 
 function ataqueFuego() {
