@@ -227,11 +227,7 @@ function combate() {
         if(ataqueJugador[index] === ataqueEnemigo [index]) {
             indexAmbosOponentes(index, index)
             crearMensaje("EMPATE")
-        }
-    }
-
-    for (let index = 0; index < ataqueJugador.length; index++) {
-        if(ataqueJugador[index] === 'FUEGO' && ataqueEnemigo[index] === 'TIERRA') {
+        } else if (ataqueJugador[index] === 'FUEGO' && ataqueEnemigo[index] === 'TIERRA') {
             indexAmbosOponentes(index, index)
             crearMensaje("GANASTE")
             victoriasJugador++
