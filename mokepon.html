@@ -18,6 +18,17 @@
             <button id="boton-mascota">Seleccionar</button>
             </section>
 
+        <section id="ver-mapa">
+            <h1 class="titulo">Recorre el mapa con tu mokepon</h1>
+            <canvas id="mapa"></canvas>
+            <div id="flechas">
+                <button class="botonesMovimiento-1" onmouseup="detenerMovimiento()" onmousedown="moverCapipepoArriba()">↑</button>
+                <button class="botonesMovimiento-2" onmouseup="detenerMovimiento()" onmousedown="moverCapipepoIzquierda()">←</button>
+                <button class="botonesMovimiento-3" onmouseup="detenerMovimiento()" onmousedown="moverCapipepoDerecha()">→</button>
+                <button class="botonesMovimiento-4" onmouseup="detenerMovimiento()" onmousedown="moverCapipepoAbajo()">↓</button>
+            </div>
+        </section>
+
         <section id="seleccionar-ataque">
             <h1 class="titulo">Mokepon</h1>
 
